@@ -1,14 +1,14 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @EnvironmentObject var noteViewModel: NoteNoteViewModel
+    @EnvironmentObject var noteViewModel: NoteViewModel
     @State private var selectedTab = 0
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            NoteNotesView()
+            NotesView()
                 .tabItem {
-                    Label("NoteNotes", systemImage: "note.text")
+                    Label("Notes", systemImage: "note.text")
                 }
                 .tag(0)
             
