@@ -1,0 +1,133 @@
+// !$*UTF8*$!
+{
+    archiveVersion = 1;
+    classes = {
+    };
+    objectVersion = 56;
+    objects = {
+        /* Begin PBXBuildFile section */
+        1234567890ABCDEF /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDEF /* NotesView.swift */; };
+        1234567890ABCDE1 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE1 /* NoteViewModel.swift */; };
+        1234567890ABCDE2 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE2 /* Note.swift */; };
+        1234567890ABCDE3 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE3 /* NotificationManager.swift */; };
+        1234567890ABCDE4 /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE4 /* AddNoteView.swift */; };
+        1234567890ABCDE5 /* EditNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE5 /* EditNoteView.swift */; };
+        1234567890ABCDE6 /* NoteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE6 /* NoteCard.swift */; };
+        1234567890ABCDE7 /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE7 /* TagsView.swift */; };
+        1234567890ABCDE8 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE8 /* SettingsView.swift */; };
+        1234567890ABCDE9 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE9 /* MainTabView.swift */; };
+        1234567890ABCDEA /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDEA /* OnboardingView.swift */; };
+        1234567890ABCDEB /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDEB /* EmptyStateView.swift */; };
+        /* End PBXBuildFile section */
+        
+        /* Begin PBXFileReference section */
+        1234567890ABCDEF /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
+        1234567890ABCDE1 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
+        1234567890ABCDE2 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+        1234567890ABCDE3 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+        1234567890ABCDE4 /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
+        1234567890ABCDE5 /* EditNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteView.swift; sourceTree = "<group>"; };
+        1234567890ABCDE6 /* NoteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCard.swift; sourceTree = "<group>"; };
+        1234567890ABCDE7 /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
+        1234567890ABCDE8 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+        1234567890ABCDE9 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+        1234567890ABCDEA /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+        1234567890ABCDEB /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+        /* End PBXFileReference section */
+        
+        /* Begin PBXFrameworksBuildPhase section */
+        1234567890ABCDEF /* Frameworks */ = {
+            isa = PBXFrameworksBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        /* End PBXFrameworksBuildPhase section */
+        
+        /* Begin PBXGroup section */
+        1234567890ABCDEF /* NoteSpace */ = {
+            isa = PBXGroup;
+            children = (
+                1234567890ABCDEF /* NotesView.swift */,
+                1234567890ABCDE1 /* NoteViewModel.swift */,
+                1234567890ABCDE2 /* Note.swift */,
+                1234567890ABCDE3 /* NotificationManager.swift */,
+                1234567890ABCDE4 /* AddNoteView.swift */,
+                1234567890ABCDE5 /* EditNoteView.swift */,
+                1234567890ABCDE6 /* NoteCard.swift */,
+                1234567890ABCDE7 /* TagsView.swift */,
+                1234567890ABCDE8 /* SettingsView.swift */,
+                1234567890ABCDE9 /* MainTabView.swift */,
+                1234567890ABCDEA /* OnboardingView.swift */,
+                1234567890ABCDEB /* EmptyStateView.swift */,
+            );
+            path = NoteSpace;
+            sourceTree = "<group>";
+        };
+        /* End PBXGroup section */
+        
+        /* Begin PBXNativeTarget section */
+        1234567890ABCDEF /* NoteSpace */ = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = 1234567890ABCDEF /* Build configuration list for PBXNativeTarget "NoteSpace" */;
+            buildPhases = (
+                1234567890ABCDEF /* Sources */,
+                1234567890ABCDEF /* Frameworks */,
+                1234567890ABCDEF /* Resources */,
+            );
+            buildRules = (
+            );
+            dependencies = (
+            );
+            name = NoteSpace;
+            productName = NoteSpace;
+            productReference = 1234567890ABCDEF /* NoteSpace.app */;
+            productType = "com.apple.product-type.application";
+        };
+        /* End PBXNativeTarget section */
+        
+        /* Begin XCBuildConfiguration section */
+        1234567890ABCDEF /* Debug */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+                ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+                CODE_SIGN_STYLE = Automatic;
+                CURRENT_PROJECT_VERSION = 1;
+                DEVELOPMENT_ASSET_PATHS = "\"NoteSpace/Preview Content\"";
+                ENABLE_PREVIEWS = YES;
+                GENERATE_INFOPLIST_FILE = YES;
+                INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+                INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+                INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+                INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+                INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+                LD_RUNPATH_SEARCH_PATHS = (
+                    "$(inherited)",
+                    "@executable_path/Frameworks",
+                );
+                MARKETING_VERSION = 1.0;
+                PRODUCT_BUNDLE_IDENTIFIER = com.example.NoteSpace;
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                SWIFT_EMIT_LOC_STRINGS = YES;
+                SWIFT_VERSION = 5.0;
+                TARGETED_DEVICE_FAMILY = "1,2";
+            };
+            name = Debug;
+        };
+        /* End XCBuildConfiguration section */
+        
+        /* Begin XCConfigurationList section */
+        1234567890ABCDEF /* Build configuration list for PBXNativeTarget "NoteSpace" */ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (
+                1234567890ABCDEF /* Debug */,
+            );
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Release;
+        };
+        /* End XCConfigurationList section */
+    };
+    rootObject = 1234567890ABCDEF /* Project object */;
+}
