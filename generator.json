@@ -1,15 +1,93 @@
 {
-  "id" : "17FA1B37-8E75-48B5-AD27-64404756A9EB",
-  "location" : "\/Users\/workcar\/Documents\/gen project\/NoteSpace",
+  "template" : "AppProject",
+  "teamId" : "com.NoteSpace.ntsp6753",
   "files" : [
-
+    "\/Users\/workcar\/Documents\/gen project\/NoteSpace\/NoteSpace\/Generated\/NoteSpace\/Generated\/AddNoteView.swift",
+    "\/Users\/workcar\/Documents\/gen project\/NoteSpace\/NoteSpace\/Generated\/NoteSpace\/Generated\/EditNoteView.swift",
+    "\/Users\/workcar\/Documents\/gen project\/NoteSpace\/NoteSpace\/Generated\/NoteSpace\/Generated\/NotificationManager.swift",
+    "\/Users\/workcar\/Documents\/gen project\/NoteSpace\/NoteSpace\/Generated\/NoteSpace\/Generated\/NoteCard.swift",
+    "\/Users\/workcar\/Documents\/gen project\/NoteSpace\/NoteSpace\/Generated\/ContentView.swift",
+    "\/Users\/workcar\/Documents\/gen project\/NoteSpace\/NoteSpace\/Generated\/NoteSpace\/Generated\/NoteViewModel.swift"
   ],
   "lastModified" : 766439261.250096,
-  "chatHistory" : [
-
-  ],
   "bundleId" : "com.NoteSpace.ntsp6753",
+  "chatHistory" : [
+    {
+      "content" : "You are an advanced AI SwiftUI assistant designed to generates source based on user instructions. \nYour primary objective is to generate the content of the files to be created as code blocks. Each code block should specify whether it's a file.\n\nWhen given a user request, perform the following steps:\n1. Understand the User Request: Carefully interpret what the user wants to create.\n2. Please generate all necessary files for this request.\n3. You create full functioning, complete code files, not just snippets. No approximations or placeholders. FULL WORKING CODE.\n4. YOU MUST ALWAYS RETURN THE COMPLETE FILE CONTENT. NEVER USE PLACEHOLDERS OR SKIP SECTIONS.Don't generate main app scene code with WindowGroup.\nIMPORTANT: Your response must ONLY contain the code blocks with no additional text before or after. Do not use markdown formatting outside of the code blocks. Use the following format for the special comment line. Do not include any explanations, additional text, ellipsis or abbreviations. Don't change any files in Extensions folder.\n\nFormat your response to clearly separate different COMPLETE files, using markers like: \nFILE: file\n<code content>\nEND_FILE\n\nUser request:\n{{userPrompt}}",
+      "timestamp" : 766439452.774561,
+      "id" : "D35FCF2D-1983-47EA-8B83-99A162A77992",
+      "role" : "user"
+    },
+    {
+      "content" : "Напиши приложение на SwiftUI, дизайн должен быть красивым и ярким.  Описание приложения: Note Space - это приложение, разработанное для того, чтобы помочь вам записывать и упорядочивать свои мысли, идеи и списки дел. Оно позволяет создавать цифровые заметки, классифицировать их и устанавливать напоминания о задачах. Вы также можете синхронизировать свои заметки на разных устройствах, гарантируя, что у вас всегда будет доступ к важной информации, где бы вы ни находились.",
+      "timestamp" : 766439452.774651,
+      "id" : "870021B4-01FE-4236-9C39-D12B2EE9B32E",
+      "role" : "user"
+    },
+    {
+      "content" : "FILE: NoteSpace\/Generated\/ContentView.swift\nimport SwiftUI\n\nstruct ContentView: View {\n    @StateObject private var noteViewModel = NoteViewModel()\n    @State private var showingAddNote = false\n    @State private var searchText = \"\"\n    \n    var body: some View {\n        NavigationStack {\n            ZStack {\n                LinearGradient(colors: [.purple.opacity(0.3), .blue.opacity(0.2)],\n                             startPoint: .topLeading,\n                             endPoint: .bottomTrailing)\n                    .ignoresSafeArea()\n                \n                VStack {\n                    if noteViewModel.filteredNotes.isEmpty {\n                        EmptyStateView()\n                    } else {\n                        notesList\n                    }\n                }\n            }\n            .navigationTitle(\"Note Space\")\n            .searchable(text: $searchText)\n            .onChange(of: searchText) { _ in\n                noteViewModel.filterNotes(searchText)\n            }\n            .toolbar {\n                ToolbarItem(placement: .navigationBarTrailing) {\n                    Button(action: { showingAddNote = true }) {\n                        Image(systemName: \"plus.circle.fill\")\n                            .font(.title2)\n                            .foregroundStyle(.purple)\n                    }\n                }\n            }\n            .sheet(isPresented: $showingAddNote) {\n                AddNoteView(noteViewModel: noteViewModel)\n            }\n        }\n    }\n    \n    private var notesList: some View {\n        ScrollView {\n            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {\n                ForEach(noteViewModel.filteredNotes) { note in\n                    NoteCard(note: note, noteViewModel: noteViewModel)\n                        .transition(.scale)\n                }\n            }\n            .padding()\n        }\n    }\n}\n\nstruct EmptyStateView: View {\n    var body: some View {\n        VStack(spacing: 20) {\n            Image(systemName: \"note.text\")\n                .font(.system(size: 70))\n                .foregroundStyle(.purple.opacity(0.7))\n            \n            Text(\"No Notes Yet\")\n                .font(.title2)\n                .fontWeight(.bold)\n            \n            Text(\"Start creating your notes by tapping the + button\")\n                .multilineTextAlignment(.center)\n                .foregroundStyle(.secondary)\n        }\n        .padding()\n    }\n}\nEND_FILE\n\nFILE: NoteSpace\/Generated\/NoteCard.swift\nimport SwiftUI\n\nstruct NoteCard: View {\n    let note: Note\n    @ObservedObject var noteViewModel: NoteViewModel\n    @State private var showingEditSheet = false\n    \n    var body: some View {\n        VStack(alignment: .leading, spacing: 12) {\n            HStack {\n                Text(note.title)\n                    .font(.headline)\n                    .foregroundStyle(.primary)\n                    .lineLimit(2)\n                \n                Spacer()\n                \n                Menu {\n                    Button(action: { showingEditSheet = true }) {\n                        Label(\"Edit\", systemImage: \"pencil\")\n                    }\n                    \n                    Button(role: .destructive, action: { noteViewModel.deleteNote(note) }) {\n                        Label(\"Delete\", systemImage: \"trash\")\n                    }\n                } label: {\n                    Image(systemName: \"ellipsis.circle.fill\")\n                        .foregroundStyle(.purple)\n                }\n            }\n            \n            Text(note.content)\n                .font(.subheadline)\n                .foregroundStyle(.secondary)\n                .lineLimit(4)\n            \n            if let reminder = note.reminder {\n                HStack {\n                    Image(systemName: \"bell.fill\")\n                        .foregroundStyle(.orange)\n                    Text(reminder.formatted(.dateTime))\n                        .font(.caption)\n                        .foregroundStyle(.secondary)\n                }\n            }\n            \n            HStack {\n                ForEach(note.tags, id: \\.self) { tag in\n                    Text(tag)\n                        .font(.caption)\n                        .padding(.horizontal, 8)\n                        .padding(.vertical, 4)\n                        .background(Color.purple.opacity(0.2))\n                        .clipShape(Capsule())\n                }\n            }\n        }\n        .padding()\n        .background(Color(UIColor.systemBackground))\n        .clipShape(RoundedRectangle(cornerRadius: 16))\n        .shadow(radius: 4)\n        .sheet(isPresented: $showingEditSheet) {\n            EditNoteView(note: note, noteViewModel: noteViewModel)\n        }\n    }\n}\nEND_FILE\n\nFILE: NoteSpace\/Generated\/Note.swift\nimport Foundation\n\nstruct Note: Identifiable, Codable {\n    let id: UUID\n    var title: String\n    var content: String\n    var tags: [String]\n    var reminder: Date?\n    var createdAt: Date\n    \n    init(id: UUID = UUID(), title: String, content: String, tags: [String], reminder: Date? = nil) {\n        self.id = id\n        self.title = title\n        self.content = content\n        self.tags = tags\n        self.reminder = reminder\n        self.createdAt = Date()\n    }\n}\nEND_FILE\n\nFILE: NoteSpace\/Generated\/NoteViewModel.swift\nimport SwiftUI\n\n@MainActor\nclass NoteViewModel: ObservableObject {\n    @Published var notes: [Note] = []\n    @Published var filteredNotes: [Note] = []\n    private let notificationManager = NotificationManager()\n    \n    init() {\n        loadNotes()\n        filteredNotes = notes\n    }\n    \n    func addNote(_ note: Note) {\n        notes.append(note)\n        filteredNotes = notes\n        saveNotes()\n        \n        if let reminder = note.reminder {\n            notificationManager.scheduleNotification(for: note, at: reminder)\n        }\n    }\n    \n    func updateNote(_ note: Note) {\n        if let index = notes.firstIndex(where: { $0.id == note.id }) {\n            notes[index] = note\n            filteredNotes = notes\n            saveNotes()\n            \n            notificationManager.removeNotification(for: note)\n            if let reminder = note.reminder {\n                notificationManager.scheduleNotification(for: note, at: reminder)\n            }\n        }\n    }\n    \n    func deleteNote(_ note: Note) {\n        notes.removeAll { $0.id == note.id }\n        filteredNotes = notes\n        saveNotes()\n        notificationManager.removeNotification(for: note)\n    }\n    \n    func filterNotes(_ searchText: String) {\n        if searchText.isEmpty {\n            filteredNotes = notes\n        } else {\n            filteredNotes = notes.filter { note in\n                note.title.localizedCaseInsensitiveContains(searchText) ||\n                note.content.localizedCaseInsensitiveContains(searchText) ||\n                note.tags.contains { $0.localizedCaseInsensitiveContains(searchText) }\n            }\n        }\n    }\n    \n    private func saveNotes() {\n        if let encoded = try? JSONEncoder().encode(notes) {\n            UserDefaults.standard.set(encoded, forKey: \"notes\")\n        }\n    }\n    \n    private func loadNotes() {\n        if let data = UserDefaults.standard.data(forKey: \"notes\"),\n           let decoded = try? JSONDecoder().decode([Note].self, from: data) {\n            notes = decoded\n        }\n    }\n}\nEND_FILE\n\nFILE: NoteSpace\/Generated\/AddNoteView.swift\nimport SwiftUI\n\nstruct AddNoteView: View {\n    @Environment(\\.dismiss) private var dismiss\n    @ObservedObject var noteViewModel: NoteViewModel\n    @State private var title = \"\"\n    @State private var content = \"\"\n    @State private var tags = \"\"\n    @State private var reminder: Date = Date()\n    @State private var hasReminder = false\n    \n    var body: some View {\n        NavigationStack {\n            Form {\n                Section(header: Text(\"Note Details\")) {\n                    TextField(\"Title\", text: $title)\n                    TextEditor(text: $content)\n                        .frame(height: 150)\n                    TextField(\"Tags (comma separated)\", text: $tags)\n                }\n                \n                Section(header: Text(\"Reminder\")) {\n                    Toggle(\"Set Reminder\", isOn: $hasReminder)\n                    \n                    if hasReminder {\n                        DatePicker(\"Reminder Time\",\n                                 selection: $reminder,\n                                 in: Date()...)\n                    }\n                }\n            }\n            .navigationTitle(\"New Note\")\n            .navigationBarTitleDisplayMode(.inline)\n            .toolbar {\n                ToolbarItem(placement: .cancellationAction) {\n                    Button(\"Cancel\") {\n                        dismiss()\n                    }\n                }\n                \n                ToolbarItem(placement: .confirmationAction) {\n                    Button(\"Save\") {\n                        saveNote()\n                    }\n                    .disabled(title.isEmpty || content.isEmpty)\n                }\n            }\n        }\n    }\n    \n    private func saveNote() {\n        let tagArray = tags\n            .split(separator: \",\")\n            .map { String($0).trimmingCharacters(in: .whitespaces) }\n            .filter { !$0.isEmpty }\n        \n        let note = Note(\n            title: title,\n            content: content,\n            tags: tagArray,\n            reminder: hasReminder ? reminder : nil\n        )\n        \n        noteViewModel.addNote(note)\n        dismiss()\n    }\n}\nEND_FILE\n\nFILE: NoteSpace\/Generated\/EditNoteView.swift\nimport SwiftUI\n\nstruct EditNoteView: View {\n    @Environment(\\.dismiss) private var dismiss\n    let note: Note\n    @ObservedObject var noteViewModel: NoteViewModel\n    \n    @State private var title: String\n    @State private var content: String\n    @State private var tags: String\n    @State private var reminder: Date\n    @State private var hasReminder: Bool\n    \n    init(note: Note, noteViewModel: NoteViewModel) {\n        self.note = note\n        self.noteViewModel = noteViewModel\n        _title = State(initialValue: note.title)\n        _content = State(initialValue: note.content)\n        _tags = State(initialValue: note.tags.joined(separator: \", \"))\n        _reminder = State(initialValue: note.reminder ?? Date())\n        _hasReminder = State(initialValue: note.reminder != nil)\n    }\n    \n    var body: some View {\n        NavigationStack {\n            Form {\n                Section(header: Text(\"Note Details\")) {\n                    TextField(\"Title\", text: $title)\n                    TextEditor(text: $content)\n                        .frame(height: 150)\n                    TextField(\"Tags (comma separated)\", text: $tags)\n                }\n                \n                Section(header: Text(\"Reminder\")) {\n                    Toggle(\"Set Reminder\", isOn: $hasReminder)\n                    \n                    if hasReminder {\n                        DatePicker(\"Reminder Time\",\n                                 selection: $reminder,\n                                 in: Date()...)\n                    }\n                }\n            }\n            .navigationTitle(\"Edit Note\")\n            .navigationBarTitleDisplayMode(.inline)\n            .toolbar {\n                ToolbarItem(placement: .cancellationAction) {\n                    Button(\"Cancel\") {\n                        dismiss()\n                    }\n                }\n                \n                ToolbarItem(placement: .confirmationAction) {\n                    Button(\"Save\") {\n                        saveNote()\n                    }\n                    .disabled(title.isEmpty || content.isEmpty)\n                }\n            }\n        }\n    }\n    \n    private func saveNote() {\n        let tagArray = tags\n            .split(separator: \",\")\n            .map { String($0).trimmingCharacters(in: .whitespaces) }\n            .filter { !$0.isEmpty }\n        \n        let updatedNote = Note(\n            id: note.id,\n            title: title,\n            content: content,\n            tags: tagArray,\n            reminder: hasReminder ? reminder : nil\n        )\n        \n        noteViewModel.updateNote(updatedNote)\n        dismiss()\n    }\n}\nEND_FILE\n\nFILE: NoteSpace\/Generated\/NotificationManager.swift\nimport UserNotifications\n\nclass NotificationManager {\n    func scheduleNotification(for note: Note, at date: Date) {\n        let content = UNMutableNotificationContent()\n        content.title = note.title\n        content.body = note.content\n        content.sound = .default\n        \n        let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)\n        let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)\n        \n        let request = UNNotificationRequest(\n            identifier: note.id.uuidString,\n            content: content,\n            trigger: trigger\n        )\n        \n        UNUserNotificationCenter.current().add(request)\n    }\n    \n    func removeNotification(for note: Note) {\n        UNUserNotificationCenter.current().removePendingNotificationRequests(\n            withIdentifiers: [note.id.uuidString]\n        )\n    }\n}\nEND_FILE",
+      "timestamp" : 766439490.428084,
+      "id" : "CFD9F874-54D6-4DF8-8572-3ADE1E4B0CB1",
+      "role" : "assistant",
+      "fileChanges" : [
+        {
+          "type" : "added",
+          "path" : "AddNoteView.swift",
+          "id" : "7A8120C7-1CD6-44CC-A9CE-C3A845C26127",
+          "changes" : {
+            "removedLines" : 0,
+            "addedLines" : 67
+          }
+        },
+        {
+          "id" : "6446DFB9-8D17-4437-A463-97A84E11D475",
+          "type" : "added",
+          "changes" : {
+            "removedLines" : 0,
+            "addedLines" : 27
+          },
+          "path" : "NotificationManager.swift"
+        },
+        {
+          "id" : "1A44B548-CA48-46C2-9AA6-86B9A795CC81",
+          "type" : "added",
+          "changes" : {
+            "addedLines" : 66,
+            "removedLines" : 0
+          },
+          "path" : "NoteCard.swift"
+        },
+        {
+          "id" : "315B30A6-B263-48A2-BCDD-750AB362ECD1",
+          "type" : "added",
+          "changes" : {
+            "addedLines" : 80,
+            "removedLines" : 0
+          },
+          "path" : "EditNoteView.swift"
+        },
+        {
+          "id" : "761FA470-74C3-48DE-AB87-7B235E38FF6C",
+          "type" : "modified",
+          "changes" : {
+            "addedLines" : 6,
+            "removedLines" : 0
+          },
+          "path" : "ContentView.swift"
+        },
+        {
+          "id" : "A5BC5BEB-ADEE-4DB9-A718-7E2C39ABB9D9",
+          "type" : "added",
+          "changes" : {
+            "addedLines" : 68,
+            "removedLines" : 0
+          },
+          "path" : "NoteViewModel.swift"
+        }
+      ]
+    }
+  ],
+  "id" : "17FA1B37-8E75-48B5-AD27-64404756A9EB",
   "name" : "NoteSpace",
-  "template" : "AppProject",
-  "teamId" : "com.NoteSpace.ntsp6753"
+  "location" : "\/Users\/workcar\/Documents\/gen project\/NoteSpace"
 }
