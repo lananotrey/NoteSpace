@@ -50,5 +50,7 @@
     </array>
     <key>CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION</key>
     <true/>
+    <key>FirebaseAppDelegateProxyEnabled</key>
+    <false/>
 </dict>
 </plist>
