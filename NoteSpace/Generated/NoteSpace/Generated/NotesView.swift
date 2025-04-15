@@ -46,7 +46,7 @@ struct NotesView: View {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
                 ForEach(noteViewModel.filteredNotes) { note in
                     NoteNoteCard(note: note, noteViewModel: noteViewModel)
-                        .transition(.scale)
+                        .transition(AnyTransition.opacity.combined(with: .scale))
                 }
             }
             .padding()
