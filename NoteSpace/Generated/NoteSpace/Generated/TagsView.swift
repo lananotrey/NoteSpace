@@ -1,13 +1,13 @@
 import SwiftUI
 
 struct TagsView: View {
-    @EnvironmentObject var noteViewModel: NoteViewModel
+    @EnvironmentObject var noteViewModel: NoteNoteViewModel
     
     var allTags: [String] {
         Array(Set(noteViewModel.notes.flatMap { $0.tags })).sorted()
     }
     
-    var taggedNotes: [String: [Note]] {
+    var taggedNotes: [String: [NoteNote]] {
         Dictionary(grouping: noteViewModel.notes) { note in
             note.tags.first ?? "Untagged"
         }
@@ -60,7 +60,7 @@ struct EmptyTagsView: View {
 
 struct TagSection: View {
     let tag: String
-    let notes: [Note]
+    let notes: [NoteNote]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -83,7 +83,7 @@ struct TagSection: View {
 }
 
 struct TaggedNoteRow: View {
-    let note: Note
+    let note: NoteNote
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -100,12 +100,4 @@ struct TaggedNoteRow: View {
                 HStack {
                     Image(systemName: "bell.fill")
                         .foregroundStyle(.orange)
-                    Text(reminder.formatted(.dateTime))
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
-                }
-            }
-        }
-        .padding(.vertical, 8)
-    }
-}
+                    Text(reminder

@@ -1,9 +1,9 @@
 import SwiftUI
 
-struct EditNoteView: View {
+struct EditNoteNoteView: View {
     @Environment(\.dismiss) private var dismiss
-    let note: Note
-    @ObservedObject var noteViewModel: NoteViewModel
+    let note: NoteNote
+    @ObservedObject var noteViewModel: NoteNoteViewModel
     
     @State private var title: String
     @State private var content: String
@@ -11,7 +11,7 @@ struct EditNoteView: View {
     @State private var reminder: Date
     @State private var hasReminder: Bool
     
-    init(note: Note, noteViewModel: NoteViewModel) {
+    init(note: NoteNote, noteViewModel: NoteNoteViewModel) {
         self.note = note
         self.noteViewModel = noteViewModel
         _title = State(initialValue: note.title)
@@ -24,7 +24,7 @@ struct EditNoteView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section(header: Text("Note Details")) {
+                Section(header: Text("NoteNote Details")) {
                     TextField("Title", text: $title)
                     TextEditor(text: $content)
                         .frame(height: 150)
@@ -41,7 +41,7 @@ struct EditNoteView: View {
                     }
                 }
             }
-            .navigationTitle("Edit Note")
+            .navigationTitle("Edit NoteNote")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -66,7 +66,7 @@ struct EditNoteView: View {
             .map { String($0).trimmingCharacters(in: .whitespaces) }
             .filter { !$0.isEmpty }
         
-        let updatedNote = Note(
+        let updatedNote = NoteNote(
             id: note.id,
             title: title,
             content: content,

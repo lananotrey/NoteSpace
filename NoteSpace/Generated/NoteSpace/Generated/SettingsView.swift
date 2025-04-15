@@ -5,7 +5,7 @@ struct SettingsView: View {
     @AppStorage("notificationEnabled") private var notificationEnabled = true
     @AppStorage("sortByDate") private var sortByDate = true
     @State private var showingResetAlert = false
-    @EnvironmentObject var noteViewModel: NoteViewModel
+    @EnvironmentObject var noteViewModel: NoteNoteViewModel
     
     var body: some View {
         NavigationStack {
@@ -30,7 +30,7 @@ struct SettingsView: View {
                     
                     Section(header: Text("Data Management")) {
                         Button(role: .destructive, action: { showingResetAlert = true }) {
-                            Label("Reset All Notes", systemImage: "trash")
+                            Label("Reset All NoteNotes", systemImage: "trash")
                         }
                     }
                     
@@ -46,7 +46,7 @@ struct SettingsView: View {
                 .scrollContentBackground(.hidden)
             }
             .navigationTitle("Settings")
-            .alert("Reset All Notes", isPresented: $showingResetAlert) {
+            .alert("Reset All NoteNotes", isPresented: $showingResetAlert) {
                 Button("Cancel", role: .cancel) { }
                 Button("Reset", role: .destructive) {
                     resetAllNotes()

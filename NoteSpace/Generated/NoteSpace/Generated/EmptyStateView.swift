@@ -7,7 +7,7 @@ struct EmptyStateView: View {
                 .font(.system(size: 70))
                 .foregroundStyle(.purple.opacity(0.7))
             
-            Text("No Notes Yet")
+            Text("No NoteNotes Yet")
                 .font(.title2)
                 .fontWeight(.bold)
             
