@@ -36,7 +36,7 @@ struct NotesView: View {
                 }
             }
             .sheet(isPresented: $showingAddNote) {
-                AddNoteView(noteViewModel: noteViewModel)
+                AddNoteNoteView(noteViewModel: noteViewModel)
             }
         }
     }
@@ -45,8 +45,8 @@ struct NotesView: View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
                 ForEach(noteViewModel.filteredNotes) { note in
-                    NoteCard(note: note, noteViewModel: noteViewModel)
-                        .transition(.scale)
+                    NoteNoteCard(note: note, noteViewModel: noteViewModel)
+                        .transition(AnyTransition.scale)
                 }
             }
             .padding()
