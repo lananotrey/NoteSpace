@@ -1,6 +1,6 @@
 import Foundation
 
-struct Note: Identifiable, Codable {
+struct Note: Identifiable, Codable, Equatable {
     let id: UUID
     var title: String
     var content: String
@@ -15,5 +15,9 @@ struct Note: Identifiable, Codable {
         self.tags = tags
         self.reminder = reminder
         self.createdAt = Date()
+    }
+    
+    static func == (lhs: Note, rhs: Note) -> Bool {
+        lhs.id == rhs.id
     }
 }
