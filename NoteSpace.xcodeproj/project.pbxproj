@@ -23,6 +23,7 @@
 		8E59FB012B7D0897002EFCF9 /* Firebase */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Firebase; sourceTree = "<group>"; };
 		8EAB576F2C40226900A542D5 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		8EFC1E472B554FD5005637B3 /* NoteSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F277A07D2DAEF31C003A81C3 /* NoteSpace.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = NoteSpace.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -98,6 +99,11 @@
 			path = NoteSpace;
 			sourceTree = "<group>";
 		};
+		F277A07E2DAEF31C003A81C3 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -153,6 +159,12 @@
 			);
 			productRefGroup = 8EFC1E482B554FD5005637B3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F277A07E2DAEF31C003A81C3 /* Products */;
+					ProjectRef = F277A07D2DAEF31C003A81C3 /* NoteSpace.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8EFC1E462B554FD5005637B3 /* NoteSpace */,

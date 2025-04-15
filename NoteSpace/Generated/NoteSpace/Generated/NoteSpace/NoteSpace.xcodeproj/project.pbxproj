@@ -1,0 +1,206 @@
+// !$*UTF8*$!
+{
+    archiveVersion = 1;
+    classes = {
+    };
+    objectVersion = 56;
+    objects = {
+        /* Begin PBXBuildFile section */
+        1234567890ABCDEF /* NoteSpaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDEF /* NoteSpaceApp.swift */; };
+        1234567890ABCDE1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE1 /* ContentView.swift */; };
+        1234567890ABCDE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE2 /* Assets.xcassets */; };
+        1234567890ABCDE3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE3 /* Preview Assets.xcassets */; };
+        1234567890ABCDE4 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE4 /* Note.swift */; };
+        1234567890ABCDE5 /* NoteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE5 /* NoteViewModel.swift */; };
+        1234567890ABCDE6 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE6 /* NotesView.swift */; };
+        1234567890ABCDE7 /* AddNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE7 /* AddNoteView.swift */; };
+        1234567890ABCDE8 /* EditNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE8 /* EditNoteView.swift */; };
+        1234567890ABCDE9 /* NoteCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDE9 /* NoteCard.swift */; };
+        1234567890ABCDEA /* TagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDEA /* TagsView.swift */; };
+        1234567890ABCDEB /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDEB /* EmptyStateView.swift */; };
+        1234567890ABCDEC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDEC /* NotificationManager.swift */; };
+        1234567890ABCDED /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDED /* MainTabView.swift */; };
+        1234567890ABCDEE /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDEE /* SettingsView.swift */; };
+        1234567890ABCDEF /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1234567890ABCDEF /* OnboardingView.swift */; };
+        /* End PBXBuildFile section */
+
+        /* Begin PBXFileReference section */
+        1234567890ABCDEF /* NoteSpace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoteSpace.app; sourceTree = BUILT_PRODUCTS_DIR; };
+        1234567890ABCDE1 /* NoteSpaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteSpaceApp.swift; sourceTree = "<group>"; };
+        1234567890ABCDE2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+        1234567890ABCDE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+        1234567890ABCDE4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+        1234567890ABCDE5 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+        1234567890ABCDE6 /* NoteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewModel.swift; sourceTree = "<group>"; };
+        1234567890ABCDE7 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
+        1234567890ABCDE8 /* AddNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteView.swift; sourceTree = "<group>"; };
+        1234567890ABCDE9 /* EditNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteView.swift; sourceTree = "<group>"; };
+        1234567890ABCDEA /* NoteCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCard.swift; sourceTree = "<group>"; };
+        1234567890ABCDEB /* TagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsView.swift; sourceTree = "<group>"; };
+        1234567890ABCDEC /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+        1234567890ABCDED /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+        1234567890ABCDEE /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+        1234567890ABCDEF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+        1234567890ABCDF0 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+        /* End PBXFileReference section */
+
+        /* Begin PBXFrameworksBuildPhase section */
+        1234567890ABCDEF /* Frameworks */ = {
+            isa = PBXFrameworksBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        /* End PBXFrameworksBuildPhase section */
+
+        /* Begin PBXGroup section */
+        1234567890ABCDEF /* NoteSpace */ = {
+            isa = PBXGroup;
+            children = (
+                1234567890ABCDE1 /* NoteSpaceApp.swift */,
+                1234567890ABCDE2 /* ContentView.swift */,
+                1234567890ABCDE5 /* Note.swift */,
+                1234567890ABCDE6 /* NoteViewModel.swift */,
+                1234567890ABCDE7 /* NotesView.swift */,
+                1234567890ABCDE8 /* AddNoteView.swift */,
+                1234567890ABCDE9 /* EditNoteView.swift */,
+                1234567890ABCDEA /* NoteCard.swift */,
+                1234567890ABCDEB /* TagsView.swift */,
+                1234567890ABCDEC /* EmptyStateView.swift */,
+                1234567890ABCDED /* NotificationManager.swift */,
+                1234567890ABCDEE /* MainTabView.swift */,
+                1234567890ABCDEF /* SettingsView.swift */,
+                1234567890ABCDF0 /* OnboardingView.swift */,
+                1234567890ABCDE3 /* Assets.xcassets */,
+                1234567890ABCDE4 /* Preview Content */,
+            );
+            path = NoteSpace;
+            sourceTree = "<group>";
+        };
+
+        1234567890ABCDE4 /* Preview Content */ = {
+            isa = PBXGroup;
+            children = (
+                1234567890ABCDE4 /* Preview Assets.xcassets */,
+            );
+            path = "Preview Content";
+            sourceTree = "<group>";
+        };
+        /* End PBXGroup section */
+
+        /* Begin PBXNativeTarget section */
+        1234567890ABCDEF /* NoteSpace */ = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = 1234567890ABCDEF /* Build configuration list for PBXNativeTarget "NoteSpace" */;
+            buildPhases = (
+                1234567890ABCDEF /* Sources */,
+                1234567890ABCDEF /* Frameworks */,
+                1234567890ABCDEF /* Resources */,
+            );
+            buildRules = (
+            );
+            dependencies = (
+            );
+            name = NoteSpace;
+            productName = NoteSpace;
+            productReference = 1234567890ABCDEF /* NoteSpace.app */;
+            productType = "com.apple.product-type.application";
+        };
+        /* End PBXNativeTarget section */
+
+        /* Begin PBXProject section */
+        1234567890ABCDEF /* Project object */ = {
+            isa = PBXProject;
+            attributes = {
+                BuildIndependentTargetsInParallel = 1;
+                LastSwiftUpdateCheck = 1500;
+                LastUpgradeCheck = 1500;
+                TargetAttributes = {
+                    1234567890ABCDEF = {
+                        CreatedOnToolsVersion = 15.0;
+                    };
+                };
+            };
+            buildConfigurationList = 1234567890ABCDEF /* Build configuration list for PBXProject "NoteSpace" */;
+            compatibilityVersion = "Xcode 14.0";
+            developmentRegion = en;
+            hasScannedForEncodings = 0;
+            knownRegions = (
+                en,
+                Base,
+            );
+            mainGroup = 1234567890ABCDEF;
+            productRefGroup = 1234567890ABCDEF /* Products */;
+            projectDirPath = "";
+            projectRoot = "";
+            targets = (
+                1234567890ABCDEF /* NoteSpace */,
+            );
+        };
+        /* End PBXProject section */
+
+        /* Begin PBXResourcesBuildPhase section */
+        1234567890ABCDEF /* Resources */ = {
+            isa = PBXResourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                1234567890ABCDE3 /* Preview Assets.xcassets in Resources */,
+                1234567890ABCDE2 /* Assets.xcassets in Resources */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        /* End PBXResourcesBuildPhase section */
+
+        /* Begin PBXSourcesBuildPhase section */
+        1234567890ABCDEF /* Sources */ = {
+            isa = PBXSourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                1234567890ABCDEF /* NoteSpaceApp.swift in Sources */,
+                1234567890ABCDE1 /* ContentView.swift in Sources */,
+                1234567890ABCDE4 /* Note.swift in Sources */,
+                1234567890ABCDE5 /* NoteViewModel.swift in Sources */,
+                1234567890ABCDE6 /* NotesView.swift in Sources */,
+                1234567890ABCDE7 /* AddNoteView.swift in Sources */,
+                1234567890ABCDE8 /* EditNoteView.swift in Sources */,
+                1234567890ABCDE9 /* NoteCard.swift in Sources */,
+                1234567890ABCDEA /* TagsView.swift in Sources */,
+                1234567890ABCDEB /* EmptyStateView.swift in Sources */,
+                1234567890ABCDEC /* NotificationManager.swift in Sources */,
+                1234567890ABCDED /* MainTabView.swift in Sources */,
+                1234567890ABCDEE /* SettingsView.swift in Sources */,
+                1234567890ABCDEF /* OnboardingView.swift in Sources */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        /* End PBXSourcesBuildPhase section */
+
+        /* Begin XCBuildConfiguration section */
+        1234567890ABCDEF /* Debug */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                ALWAYS_SEARCH_USER_PATHS = NO;
+                ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+                CLANG_ANALYZER_NONNULL = YES;
+                CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+                CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+                CLANG_ENABLE_MODULES = YES;
+                CLANG_ENABLE_OBJC_ARC = YES;
+                CLANG_ENABLE_OBJC_WEAK = YES;
+                CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+                CLANG_WARN_BOOL_CONVERSION = YES;
+                CLANG_WARN_COMMA = YES;
+                CLANG_WARN_CONSTANT_CONVERSION = YES;
+                CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+                CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+                CLANG_WARN_EMPTY_BODY = YES;
+                CLANG_WARN_ENUM_CONVERSION = YES;
+                CLANG_WARN_INFINITE_RECURSION = YES;
+                CLANG_WARN_INT_CONVERSION = YES;
+                CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+                CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+                CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+                CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+                
