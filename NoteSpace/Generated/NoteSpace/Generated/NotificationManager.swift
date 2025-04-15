@@ -1,10 +1,10 @@
 import UserNotifications
 
 class NotificationManager {
-    func scheduleNotification(for note: Note, at date: Date) {
+    func scheduleNotification(for noteNote: NoteNote, at date: Date) {
         let content = UNMutableNotificationContent()
-        content.title = "Note Reminder"
-        content.body = note.title
+        content.title = "NoteNote Reminder"
+        content.body = noteNote.title
         content.sound = .default
         
         let calendar = Calendar.current
@@ -12,7 +12,7 @@ class NotificationManager {
         let trigger = UNCalendarNotificationTrigger(dateMatching: components, repeats: false)
         
         let request = UNNotificationRequest(
-            identifier: note.id.uuidString,
+            identifier: noteNote.id.uuidString,
             content: content,
             trigger: trigger
         )
@@ -24,9 +24,9 @@ class NotificationManager {
         }
     }
     
-    func removeNotification(for note: Note) {
+    func removeNotification(for noteNote: NoteNote) {
         UNUserNotificationCenter.current().removePendingNotificationRequests(
-            withIdentifiers: [note.id.uuidString]
+            withIdentifiers: [noteNote.id.uuidString]
         )
     }
 }

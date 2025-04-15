@@ -11,7 +11,7 @@ struct EmptyStateView: View {
                 .font(.title2)
                 .fontWeight(.bold)
             
-            Text("Start creating your notes by tapping the + button")
+            Text("Start creating your noteNotes by tapping the + button")
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.secondary)
         }

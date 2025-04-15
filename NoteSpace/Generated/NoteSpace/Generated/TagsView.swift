@@ -1,15 +1,15 @@
 import SwiftUI
 
 struct TagsView: View {
-    @EnvironmentObject var noteViewModel: NoteViewModel
+    @EnvironmentObject var noteNoteViewModel: NoteNoteViewModel
     
     var allTags: [String] {
-        Array(Set(noteViewModel.notes.flatMap { $0.tags })).sorted()
+        Array(Set(noteNoteViewModel.noteNotes.flatMap { $0.tags })).sorted()
     }
     
-    var taggedNotes: [String: [Note]] {
-        Dictionary(grouping: noteViewModel.notes) { note in
-            note.tags.first ?? "Untagged"
+    var taggedNoteNotes: [String: [NoteNote]] {
+        Dictionary(grouping: noteNoteViewModel.noteNotes) { noteNote in
+            noteNote.tags.first ?? "Untagged"
         }
     }
     
@@ -27,7 +27,7 @@ struct TagsView: View {
                     ScrollView {
                         LazyVStack(spacing: 16) {
                             ForEach(allTags, id: \.self) { tag in
-                                TagSection(tag: tag, notes: taggedNotes[tag] ?? [])
+                                TagSection(tag: tag, noteNotes: taggedNoteNotes[tag] ?? [])
                             }
                         }
                         .padding()
@@ -50,7 +50,7 @@ struct EmptyTagsView: View {
                 .font(.title2)
                 .fontWeight(.bold)
             
-            Text("Add tags to your notes to organize them better")
+            Text("Add tags to your noteNotes to organize them better")
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.secondary)
         }
@@ -60,7 +60,7 @@ struct EmptyTagsView: View {
 
 struct TagSection: View {
     let tag: String
-    let notes: [Note]
+    let noteNotes: [NoteNote]
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -71,40 +71,5 @@ struct TagSection: View {
                 .background(Color.purple.opacity(0.2))
                 .clipShape(Capsule())
             
-            ForEach(notes) { note in
-                TaggedNoteRow(note: note)
-            }
-        }
-        .padding()
-        .background(Color(UIColor.systemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-        .shadow(radius: 4)
-    }
-}
-
-struct TaggedNoteRow: View {
-    let note: Note
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(note.title)
-                .font(.subheadline)
-                .fontWeight(.medium)
-            
-            Text(note.content)
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .lineLimit(2)
-            
-            if let reminder = note.reminder {
-                HStack {
-                    Image(systemName: "bell.fill")
-                        .foregroundStyle(.orange)
-                    Text(reminder.formatted(date: .abbreviated, time: .shortened))
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-            }
-        }
-    }
-}
+            ForEach(noteNotes) { noteNote in
+                TaggedNoteNoteRow(noteNote: note
