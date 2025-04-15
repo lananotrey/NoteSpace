@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct NoteNoteCard: View {
-    let note: NoteNote
-    @ObservedObject var noteViewModel: NoteNoteViewModel
+struct NoteCard: View {
+    let note: Note
+    @ObservedObject var noteViewModel: NoteViewModel
     @State private var showingEditSheet = false
     
     var body: some View {
@@ -60,7 +60,7 @@ struct NoteNoteCard: View {
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .shadow(radius: 4)
         .sheet(isPresented: $showingEditSheet) {
-            EditNoteNoteView(note: note, noteViewModel: noteViewModel)
+            EditNoteView(note: note, noteViewModel: noteViewModel)
         }
     }
 }

@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct AddNoteNoteView: View {
+struct AddNoteView: View {
     @Environment(\.dismiss) private var dismiss
-    @ObservedObject var noteViewModel: NoteNoteViewModel
+    @ObservedObject var noteViewModel: NoteViewModel
     @State private var title = ""
     @State private var content = ""
     @State private var tags = ""
@@ -12,7 +12,7 @@ struct AddNoteNoteView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section(header: Text("NoteNote Details")) {
+                Section(header: Text("Note Details")) {
                     TextField("Title", text: $title)
                     TextEditor(text: $content)
                         .frame(height: 150)
@@ -29,7 +29,7 @@ struct AddNoteNoteView: View {
                     }
                 }
             }
-            .navigationTitle("New NoteNote")
+            .navigationTitle("New Note")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -54,7 +54,7 @@ struct AddNoteNoteView: View {
             .map { String($0).trimmingCharacters(in: .whitespaces) }
             .filter { !$0.isEmpty }
         
-        let note = NoteNote(
+        let note = Note(
             title: title,
             content: content,
             tags: tagArray,
