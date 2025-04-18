@@ -72,4 +72,38 @@ struct TagSection: View {
                 .clipShape(Capsule())
             
             ForEach(noteNotes) { noteNote in
-                TaggedNoteNoteRow(noteNote: note
+                TaggedNoteNoteRow(noteNote: noteNote)
+            }
+        }
+    }
+}
+
+struct TaggedNoteNoteRow: View {
+    let noteNote: NoteNote
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text(noteNote.title)
+                .font(.headline)
+            
+            Text(noteNote.content)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .lineLimit(2)
+            
+            if let reminder = noteNote.reminder {
+                HStack {
+                    Image(systemName: "bell.fill")
+                        .foregroundStyle(.orange)
+                    Text(reminder.formatted(.dateTime))
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+            }
+        }
+        .padding()
+        .background(Color(UIColor.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .shadow(radius: 2)
+    }
+}
