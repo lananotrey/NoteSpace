@@ -2,8 +2,8 @@ import SwiftUI
 
 @MainActor
 class NoteViewModel: ObservableObject {
-    @Published var notes: [Note] = []
-    @Published var filteredNotes: [Note] = []
+    @Published var notes: [NoteNote] = []
+    @Published var filteredNotes: [NoteNote] = []
     private let notificationManager = NotificationManager()
     
     init() {
@@ -11,7 +11,7 @@ class NoteViewModel: ObservableObject {
         filteredNotes = notes
     }
     
-    func addNote(_ note: Note) {
+    func addNote(_ note: NoteNote) {
         notes.append(note)
         filteredNotes = notes
         saveNotes()
@@ -21,7 +21,7 @@ class NoteViewModel: ObservableObject {
         }
     }
     
-    func updateNote(_ note: Note) {
+    func updateNote(_ note: NoteNote) {
         if let index = notes.firstIndex(where: { $0.id == note.id }) {
             notes[index] = note
             filteredNotes = notes
@@ -34,7 +34,7 @@ class NoteViewModel: ObservableObject {
         }
     }
     
-    func deleteNote(_ note: Note) {
+    func deleteNote(_ note: NoteNote) {
         notes.removeAll { $0.id == note.id }
         filteredNotes = notes
         saveNotes()
@@ -61,7 +61,7 @@ class NoteViewModel: ObservableObject {
     
     private func loadNotes() {
         if let data = UserDefaults.standard.data(forKey: "notes"),
-           let decoded = try? JSONDecoder().decode([Note].self, from: data) {
+           let decoded = try? JSONDecoder().decode([NoteNote].self, from: data) {
             notes = decoded
         }
     }

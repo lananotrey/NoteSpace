@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct NoteCard: View {
-    let note: Note
+    let note: NoteNote
     @ObservedObject var noteViewModel: NoteViewModel
     @State private var showingEditSheet = false
     

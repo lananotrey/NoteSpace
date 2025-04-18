@@ -12,7 +12,7 @@ struct AddNoteView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section(header: Text("Note Details")) {
+                Section(header: Text("NoteNote Details")) {
                     TextField("Title", text: $title)
                     TextEditor(text: $content)
                         .frame(height: 150)
@@ -29,7 +29,7 @@ struct AddNoteView: View {
                     }
                 }
             }
-            .navigationTitle("New Note")
+            .navigationTitle("New NoteNote")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -54,7 +54,7 @@ struct AddNoteView: View {
             .map { String($0).trimmingCharacters(in: .whitespaces) }
             .filter { !$0.isEmpty }
         
-        let note = Note(
+        let note = NoteNote(
             title: title,
             content: content,
             tags: tagArray,
