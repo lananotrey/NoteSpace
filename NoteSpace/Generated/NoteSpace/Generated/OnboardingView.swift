@@ -75,13 +75,18 @@ struct OnboardingPage {
 
 struct OnboardingPageView: View {
     let page: OnboardingPage
+    @State private var isAnimating = false
     
     var body: some View {
         VStack(spacing: 20) {
             Image(systemName: page.image)
                 .font(.system(size: 100))
                 .foregroundStyle(.purple)
-                .symbolEffect(.bounce, options: .repeating)
+                .scaleEffect(isAnimating ? 1.1 : 1.0)
+                .animation(Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: true), value: isAnimating)
+                .onAppear {
+                    isAnimating = true
+                }
             
             Text(page.title)
                 .font(.title)
