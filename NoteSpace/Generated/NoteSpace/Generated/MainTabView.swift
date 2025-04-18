@@ -6,19 +6,22 @@ struct MainTabView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            NoteNotesView()
+            NotesView()
+                .environmentObject(noteNoteViewModel)
                 .tabItem {
-                    Label("NoteNotes", systemImage: "note.text")
+                    Label("Notes", systemImage: "note.text")
                 }
                 .tag(0)
             
             TagsView()
+                .environmentObject(noteNoteViewModel)
                 .tabItem {
                     Label("Tags", systemImage: "tag")
                 }
                 .tag(1)
             
             SettingsView()
+                .environmentObject(noteNoteViewModel)
                 .tabItem {
                     Label("Settings", systemImage: "gear")
                 }

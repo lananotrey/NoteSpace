@@ -1,14 +1,14 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var noteViewModel = NoteViewModel()
+    @StateObject private var noteNoteViewModel = NoteNoteViewModel()
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
     
     var body: some View {
         Group {
             if hasCompletedOnboarding {
                 MainTabView()
-                    .environmentObject(noteViewModel)
+                    .environmentObject(noteNoteViewModel)
             } else {
                 OnboardingView()
             }
