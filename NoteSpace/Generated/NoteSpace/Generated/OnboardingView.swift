@@ -7,18 +7,18 @@ struct OnboardingView: View {
     let pages = [
         OnboardingPage(
             image: "note.text",
-            title: "Welcome to Note Space",
-            description: "Your personal space for capturing thoughts, ideas, and memories"
+            title: "Welcome to NoteSpace",
+            description: "Create and organize your notes with ease. Add titles, content, and tags to keep your thoughts organized."
         ),
         OnboardingPage(
-            image: "tag",
-            title: "Organize with Tags",
-            description: "Keep your notes organized with custom tags and easy search"
-        ),
-        OnboardingPage(
-            image: "bell",
+            image: "bell.badge",
             title: "Never Miss Important Notes",
-            description: "Set reminders for your important notes and stay on track"
+            description: "Set reminders for your important notes and receive notifications at the right time."
+        ),
+        OnboardingPage(
+            image: "tag.fill",
+            title: "Smart Organization",
+            description: "Use tags to categorize your notes and find them quickly with powerful search functionality."
         )
     ]
     
@@ -31,21 +31,28 @@ struct OnboardingView: View {
             )
             .ignoresSafeArea()
             
-            VStack(spacing: 20) {
+            VStack {
                 TabView(selection: $currentPage) {
                     ForEach(0..<pages.count, id: \.self) { index in
                         OnboardingPageView(page: pages[index])
+                            .tag(index)
                     }
                 }
-                .tabViewStyle(.page)
-                .indexViewStyle(.page(backgroundDisplayMode: .always))
+                .tabViewStyle(.page(indexDisplayMode: .always))
+                .animation(.easeInOut, value: currentPage)
                 
                 Button(action: {
-                    withAnimation {
-                        hasCompletedOnboarding = true
+                    if currentPage < pages.count - 1 {
+                        withAnimation {
+                            currentPage += 1
+                        }
+                    } else {
+                        withAnimation {
+                            hasCompletedOnboarding = true
+                        }
                     }
                 }) {
-                    Text(currentPage == pages.count - 1 ? "Get Started" : "Skip")
+                    Text(currentPage == pages.count - 1 ? "Get Started" : "Next")
                         .font(.headline)
                         .foregroundStyle(.white)
                         .frame(maxWidth: .infinity)
@@ -74,19 +81,22 @@ struct OnboardingPageView: View {
             Image(systemName: page.image)
                 .font(.system(size: 100))
                 .foregroundStyle(.purple)
-                .padding()
+                .symbolEffect(.bounce, options: .repeating)
             
             Text(page.title)
                 .font(.title)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
+                .transition(.slide)
             
             Text(page.description)
                 .font(.body)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.secondary)
                 .padding(.horizontal)
+                .transition(.scale)
         }
         .padding()
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }

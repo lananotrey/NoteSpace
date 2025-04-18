@@ -5,11 +5,13 @@ struct ContentView: View {
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
     
     var body: some View {
-        if hasCompletedOnboarding {
-            MainTabView()
-                .environmentObject(noteViewModel)
-        } else {
-            OnboardingView()
+        Group {
+            if hasCompletedOnboarding {
+                MainTabView()
+                    .environmentObject(noteViewModel)
+            } else {
+                OnboardingView()
+            }
         }
     }
 }
