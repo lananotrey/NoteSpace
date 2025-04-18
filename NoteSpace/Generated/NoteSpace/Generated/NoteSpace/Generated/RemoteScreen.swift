@@ -1,4 +1,5 @@
 import SwiftUI
+import Firebase
 
 struct RemoteScreen: View {
     @StateObject private var remoteViewModel = RemoteViewModel()
