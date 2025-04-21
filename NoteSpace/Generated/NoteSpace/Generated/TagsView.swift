@@ -90,16 +90,6 @@ struct TaggedNoteNoteRow: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .lineLimit(2)
-            
-            if let reminder = noteNote.reminder {
-                HStack {
-                    Image(systemName: "bell.fill")
-                        .foregroundStyle(.orange)
-                    Text(reminder.formatted(.dateTime))
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-            }
         }
         .padding()
         .background(Color(UIColor.systemBackground))
