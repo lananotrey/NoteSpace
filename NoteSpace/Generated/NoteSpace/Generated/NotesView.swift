@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct NotesView: View {
-    @EnvironmentObject var noteViewModel: NoteViewModel
+    @EnvironmentObject var noteNoteViewModel: NoteNoteViewModel
     @State private var showingAddNote = false
     @State private var searchText = ""
     
@@ -14,7 +14,7 @@ struct NotesView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    if noteViewModel.filteredNotes.isEmpty {
+                    if noteNoteViewModel.filteredNoteNotes.isEmpty {
                         EmptyStateView()
                     } else {
                         notesList
@@ -24,7 +24,7 @@ struct NotesView: View {
             .navigationTitle("Notes")
             .searchable(text: $searchText)
             .onChange(of: searchText) { _ in
-                noteViewModel.filterNotes(searchText)
+                noteNoteViewModel.filterNoteNotes(searchText)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -36,7 +36,7 @@ struct NotesView: View {
                 }
             }
             .sheet(isPresented: $showingAddNote) {
-                AddNoteView(noteViewModel: noteViewModel)
+                AddNoteNoteView(noteNoteViewModel: noteNoteViewModel)
             }
         }
     }
@@ -44,13 +44,13 @@ struct NotesView: View {
     private var notesList: some View {
         ScrollView {
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                ForEach(noteViewModel.filteredNotes) { note in
-                    NoteCard(note: note, noteViewModel: noteViewModel)
+                ForEach(noteNoteViewModel.filteredNoteNotes) { note in
+                    NoteNoteCard(noteNote: note, noteNoteViewModel: noteNoteViewModel)
                         .transition(AnyTransition.opacity.combined(with: .scale))
                 }
             }
             .padding()
-            .animation(.easeInOut, value: noteViewModel.filteredNotes)
+            .animation(.easeInOut, value: noteNoteViewModel.filteredNoteNotes)
         }
     }
 }

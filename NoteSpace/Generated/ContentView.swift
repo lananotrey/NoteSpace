@@ -6,11 +6,11 @@ struct ContentView: View {
     
     var body: some View {
         Group {
-            if hasCompletedOnboarding {
+            if !hasCompletedOnboarding {
+                OnboardingView()
+            } else {
                 MainTabView()
                     .environmentObject(noteNoteViewModel)
-            } else {
-                OnboardingView()
             }
         }
     }
