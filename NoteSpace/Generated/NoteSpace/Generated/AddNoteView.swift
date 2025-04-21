@@ -6,30 +6,18 @@ struct AddNoteView: View {
     @State private var title = ""
     @State private var content = ""
     @State private var tags = ""
-    @State private var reminder: Date = Date()
-    @State private var hasReminder = false
     
     var body: some View {
         NavigationStack {
             Form {
-                Section(header: Text("NoteNote Details")) {
+                Section(header: Text("Note Details")) {
                     TextField("Title", text: $title)
                     TextEditor(text: $content)
                         .frame(height: 150)
                     TextField("Tags (comma separated)", text: $tags)
                 }
-                
-                Section(header: Text("Reminder")) {
-                    Toggle("Set Reminder", isOn: $hasReminder)
-                    
-                    if hasReminder {
-                        DatePicker("Reminder Time",
-                                 selection: $reminder,
-                                 in: Date()...)
-                    }
-                }
             }
-            .navigationTitle("New NoteNote")
+            .navigationTitle("New Note")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -57,8 +45,7 @@ struct AddNoteView: View {
         let note = NoteNote(
             title: title,
             content: content,
-            tags: tagArray,
-            reminder: hasReminder ? reminder : nil
+            tags: tagArray
         )
         
         noteViewModel.addNote(note)

@@ -8,8 +8,6 @@ struct EditNoteView: View {
     @State private var title: String
     @State private var content: String
     @State private var tags: String
-    @State private var reminder: Date
-    @State private var hasReminder: Bool
     
     init(note: NoteNote, noteViewModel: NoteViewModel) {
         self.note = note
@@ -17,31 +15,19 @@ struct EditNoteView: View {
         _title = State(initialValue: note.title)
         _content = State(initialValue: note.content)
         _tags = State(initialValue: note.tags.joined(separator: ", "))
-        _reminder = State(initialValue: note.reminder ?? Date())
-        _hasReminder = State(initialValue: note.reminder != nil)
     }
     
     var body: some View {
         NavigationStack {
             Form {
-                Section(header: Text("NoteNote Details")) {
+                Section(header: Text("Note Details")) {
                     TextField("Title", text: $title)
                     TextEditor(text: $content)
                         .frame(height: 150)
                     TextField("Tags (comma separated)", text: $tags)
                 }
-                
-                Section(header: Text("Reminder")) {
-                    Toggle("Set Reminder", isOn: $hasReminder)
-                    
-                    if hasReminder {
-                        DatePicker("Reminder Time",
-                                 selection: $reminder,
-                                 in: Date()...)
-                    }
-                }
             }
-            .navigationTitle("Edit NoteNote")
+            .navigationTitle("Edit Note")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -70,8 +56,7 @@ struct EditNoteView: View {
             id: note.id,
             title: title,
             content: content,
-            tags: tagArray,
-            reminder: hasReminder ? reminder : nil
+            tags: tagArray
         )
         
         noteViewModel.updateNote(updatedNote)
