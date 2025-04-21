@@ -2,7 +2,6 @@ import SwiftUI
 
 struct SettingsView: View {
     @AppStorage("isDarkMode") private var isDarkMode = false
-    @AppStorage("notificationEnabled") private var notificationEnabled = true
     @State private var showingResetAlert = false
     @EnvironmentObject var noteNoteViewModel: NoteNoteViewModel
     
@@ -17,10 +16,6 @@ struct SettingsView: View {
                 Form {
                     Section(header: Text("Appearance")) {
                         Toggle("Dark Mode", isOn: $isDarkMode)
-                    }
-                    
-                    Section(header: Text("Notifications")) {
-                        Toggle("Enable Notifications", isOn: $notificationEnabled)
                     }
                     
                     Section(header: Text("Data Management")) {
