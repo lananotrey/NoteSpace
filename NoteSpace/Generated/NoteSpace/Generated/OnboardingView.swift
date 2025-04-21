@@ -2,6 +2,7 @@ import SwiftUI
 
 struct OnboardingView: View {
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding = false
+    @AppStorage("isDarkMode") private var isDarkMode = false
     @State private var currentPage = 0
     
     let pages = [
@@ -64,6 +65,7 @@ struct OnboardingView: View {
                 .padding(.bottom, 30)
             }
         }
+        .preferredColorScheme(isDarkMode ? .dark : .light)
     }
 }
 

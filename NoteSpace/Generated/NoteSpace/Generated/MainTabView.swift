@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MainTabView: View {
     @EnvironmentObject var noteNoteViewModel: NoteNoteViewModel
+    @AppStorage("isDarkMode") private var isDarkMode = false
     @State private var selectedTab = 0
     
     var body: some View {
@@ -28,5 +29,6 @@ struct MainTabView: View {
                 .tag(2)
         }
         .tint(.purple)
+        .preferredColorScheme(isDarkMode ? .dark : .light)
     }
 }
