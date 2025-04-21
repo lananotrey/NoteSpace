@@ -1,0 +1,7 @@
+// Add to your existing project.pbxproj file:
+
+buildSettings = {
+    CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
+    CODE_SIGN_ENTITLEMENTS = NoteSpace/NoteSpace.entitlements;
+    // ... other existing build settings
+};
