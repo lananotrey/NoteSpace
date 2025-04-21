@@ -4,7 +4,6 @@ import SwiftUI
 class NoteViewModel: ObservableObject {
     @Published var notes: [NoteNote] = []
     @Published var filteredNotes: [NoteNote] = []
-    private let notificationManager = NotificationManager()
     
     init() {
         loadNotes()
@@ -15,10 +14,6 @@ class NoteViewModel: ObservableObject {
         notes.append(note)
         filteredNotes = notes
         saveNotes()
-        
-        if let reminder = note.reminder {
-            notificationManager.scheduleNotification(for: note, at: reminder)
-        }
     }
     
     func updateNote(_ note: NoteNote) {
@@ -26,11 +21,6 @@ class NoteViewModel: ObservableObject {
             notes[index] = note
             filteredNotes = notes
             saveNotes()
-            
-            notificationManager.removeNotification(for: note)
-            if let reminder = note.reminder {
-                notificationManager.scheduleNotification(for: note, at: reminder)
-            }
         }
     }
     
@@ -38,7 +28,6 @@ class NoteViewModel: ObservableObject {
         notes.removeAll { $0.id == note.id }
         filteredNotes = notes
         saveNotes()
-        notificationManager.removeNotification(for: note)
     }
     
     func filterNotes(_ searchText: String) {
