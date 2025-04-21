@@ -6,13 +6,15 @@ struct RemoteScreen: View {
     @Environment(\.scenePhase) private var scenePhase
     
     var body: some View {
-        mainContent
-            .onAppear(perform: handleOnAppear)
-            .onChange(of: scenePhase) { newPhase in
-                if newPhase == .active {
-                    AppRatingManager.shared.checkAndRequestReview()
+        NavigationView {
+            mainContent
+                .onAppear(perform: handleOnAppear)
+                .onChange(of: scenePhase) { newPhase in
+                    if newPhase == .active {
+                        AppRatingManager.shared.checkAndRequestReview()
+                    }
                 }
-            }
+        }
     }
     
     @ViewBuilder
