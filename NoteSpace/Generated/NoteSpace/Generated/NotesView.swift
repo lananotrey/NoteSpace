@@ -4,9 +4,8 @@ struct NotesView: View {
     @EnvironmentObject var noteNoteViewModel: NoteNoteViewModel
     @State private var showingAddNote = false
     @State private var searchText = ""
-    @State private var sortByDate = true
-    @State private var showingStatistics = false
     @State private var selectedFilter: NoteFilter = .all
+    @State private var showingStatistics = false
     
     private var filteredAndSortedNotes: [NoteNote] {
         let filtered = switch selectedFilter {
@@ -26,13 +25,7 @@ struct NotesView: View {
             }
         }
         
-        return filtered.sorted { first, second in
-            if sortByDate {
-                return first.createdAt > second.createdAt
-            } else {
-                return first.title.lowercased() < second.title.lowercased()
-            }
-        }
+        return filtered.sorted { $0.createdAt > $1.createdAt }
     }
     
     var statistics: NoteStatistics {
@@ -77,16 +70,8 @@ struct NotesView: View {
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Menu {
-                        Toggle(isOn: $sortByDate) {
-                            Label("Sort by Date", systemImage: "calendar")
-                        }
-                        
-                        Button(action: { showingAddNote = true }) {
-                            Label("Add Note", systemImage: "plus")
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis.circle.fill")
+                    Button(action: { showingAddNote = true }) {
+                        Image(systemName: "plus.circle.fill")
                             .font(.title2)
                             .foregroundStyle(.purple)
                     }
