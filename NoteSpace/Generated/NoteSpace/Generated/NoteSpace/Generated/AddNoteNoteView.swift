@@ -6,6 +6,8 @@ struct AddNoteNoteView: View {
     @State private var title = ""
     @State private var content = ""
     @State private var tags = ""
+    @Binding var selectedTab: Int
+    @State private var showSuccessAlert = false
     
     var body: some View {
         NavigationStack {
@@ -34,6 +36,15 @@ struct AddNoteNoteView: View {
                 }
             }
         }
+        .alert("Success", isPresented: $showSuccessAlert) {
+            Button("OK") {
+                clearFields()
+                selectedTab = 0
+                dismiss()
+            }
+        } message: {
+            Text("Note successfully added!")
+        }
     }
     
     private func saveNoteNote() {
@@ -49,6 +60,12 @@ struct AddNoteNoteView: View {
         )
         
         noteNoteViewModel.addNoteNote(noteNote)
-        dismiss()
+        showSuccessAlert = true
+    }
+    
+    private func clearFields() {
+        title = ""
+        content = ""
+        tags = ""
     }
 }

@@ -6,6 +6,7 @@ struct NotesView: View {
     @State private var searchText = ""
     @State private var selectedFilter: NoteFilter = .all
     @State private var showingStatistics = false
+    @Binding var selectedTab: Int
     
     private var filteredAndSortedNotes: [NoteNote] {
         let filtered = switch selectedFilter {
@@ -78,7 +79,7 @@ struct NotesView: View {
                 }
             }
             .sheet(isPresented: $showingAddNote) {
-                AddNoteNoteView(noteNoteViewModel: noteNoteViewModel)
+                AddNoteNoteView(noteNoteViewModel: noteNoteViewModel, selectedTab: $selectedTab)
             }
             .sheet(isPresented: $showingStatistics) {
                 StatisticsView(statistics: statistics)
