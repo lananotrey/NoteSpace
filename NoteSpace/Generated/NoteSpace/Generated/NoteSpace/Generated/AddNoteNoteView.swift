@@ -6,8 +6,6 @@ struct AddNoteNoteView: View {
     @State private var title = ""
     @State private var content = ""
     @State private var tags = ""
-    @State private var reminder: Date = Date()
-    @State private var hasReminder = false
     
     var body: some View {
         NavigationStack {
@@ -17,16 +15,6 @@ struct AddNoteNoteView: View {
                     TextEditor(text: $content)
                         .frame(height: 150)
                     TextField("Tags (comma separated)", text: $tags)
-                }
-                
-                Section(header: Text("Reminder")) {
-                    Toggle("Set Reminder", isOn: $hasReminder)
-                    
-                    if hasReminder {
-                        DatePicker("Reminder Time",
-                                 selection: $reminder,
-                                 in: Date()...)
-                    }
                 }
             }
             .navigationTitle("New NoteNote")
@@ -57,8 +45,7 @@ struct AddNoteNoteView: View {
         let noteNote = NoteNote(
             title: title,
             content: content,
-            tags: tagArray,
-            reminder: hasReminder ? reminder : nil
+            tags: tagArray
         )
         
         noteNoteViewModel.addNoteNote(noteNote)

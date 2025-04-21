@@ -8,8 +8,6 @@ struct EditNoteNoteView: View {
     @State private var title: String
     @State private var content: String
     @State private var tags: String
-    @State private var reminder: Date
-    @State private var hasReminder: Bool
     
     init(noteNote: NoteNote, noteNoteViewModel: NoteNoteViewModel) {
         self.noteNote = noteNote
@@ -17,8 +15,6 @@ struct EditNoteNoteView: View {
         _title = State(initialValue: noteNote.title)
         _content = State(initialValue: noteNote.content)
         _tags = State(initialValue: noteNote.tags.joined(separator: ", "))
-        _reminder = State(initialValue: noteNote.reminder ?? Date())
-        _hasReminder = State(initialValue: noteNote.reminder != nil)
     }
     
     var body: some View {
@@ -29,16 +25,6 @@ struct EditNoteNoteView: View {
                     TextEditor(text: $content)
                         .frame(height: 150)
                     TextField("Tags (comma separated)", text: $tags)
-                }
-                
-                Section(header: Text("Reminder")) {
-                    Toggle("Set Reminder", isOn: $hasReminder)
-                    
-                    if hasReminder {
-                        DatePicker("Reminder Time",
-                                 selection: $reminder,
-                                 in: Date()...)
-                    }
                 }
             }
             .navigationTitle("Edit NoteNote")
@@ -70,8 +56,7 @@ struct EditNoteNoteView: View {
             id: noteNote.id,
             title: title,
             content: content,
-            tags: tagArray,
-            reminder: hasReminder ? reminder : nil
+            tags: tagArray
         )
         
         noteNoteViewModel.updateNoteNote(updatedNoteNote)

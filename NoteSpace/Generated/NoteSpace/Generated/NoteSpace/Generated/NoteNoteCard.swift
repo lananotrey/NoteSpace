@@ -34,16 +34,6 @@ struct NoteNoteCard: View {
                 .foregroundStyle(.secondary)
                 .lineLimit(4)
             
-            if let reminder = noteNote.reminder {
-                HStack {
-                    Image(systemName: "bell.fill")
-                        .foregroundStyle(.orange)
-                    Text(reminder.formatted(.dateTime))
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-            }
-            
             HStack {
                 ForEach(noteNote.tags, id: \.self) { tag in
                     Text(tag)
