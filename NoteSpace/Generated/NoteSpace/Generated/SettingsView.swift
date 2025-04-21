@@ -3,7 +3,6 @@ import SwiftUI
 struct SettingsView: View {
     @AppStorage("isDarkMode") private var isDarkMode = false
     @AppStorage("notificationEnabled") private var notificationEnabled = true
-    @AppStorage("sortByDate") private var sortByDate = true
     @State private var showingResetAlert = false
     @EnvironmentObject var noteNoteViewModel: NoteNoteViewModel
     
@@ -24,13 +23,9 @@ struct SettingsView: View {
                         Toggle("Enable Notifications", isOn: $notificationEnabled)
                     }
                     
-                    Section(header: Text("Sorting")) {
-                        Toggle("Sort by Date", isOn: $sortByDate)
-                    }
-                    
                     Section(header: Text("Data Management")) {
                         Button(role: .destructive, action: { showingResetAlert = true }) {
-                            Label("Reset All NoteNotes", systemImage: "trash")
+                            Label("Reset All Notes", systemImage: "trash")
                         }
                     }
                     
@@ -46,13 +41,13 @@ struct SettingsView: View {
                 .scrollContentBackground(.hidden)
             }
             .navigationTitle("Settings")
-            .alert("Reset All NoteNotes", isPresented: $showingResetAlert) {
+            .alert("Reset All Notes", isPresented: $showingResetAlert) {
                 Button("Cancel", role: .cancel) { }
                 Button("Reset", role: .destructive) {
                     resetAllNoteNotes()
                 }
             } message: {
-                Text("This action cannot be undone. Are you sure you want to delete all noteNotes?")
+                Text("This action cannot be undone. Are you sure you want to delete all notes?")
             }
         }
     }
