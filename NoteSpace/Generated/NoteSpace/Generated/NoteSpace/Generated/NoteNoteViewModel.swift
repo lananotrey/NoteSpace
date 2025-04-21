@@ -11,44 +11,44 @@ class NoteNoteViewModel: ObservableObject {
         filteredNoteNotes = noteNotes
     }
     
-    func addNoteNote(_ noteNote: NoteNote) {
-        noteNotes.append(noteNote)
+    func addNoteNote(_ note: NoteNote) {
+        noteNotes.append(note)
         filteredNoteNotes = noteNotes
         saveNoteNotes()
         
-        if let reminder = noteNote.reminder {
-            notificationManager.scheduleNotification(for: noteNote, at: reminder)
+        if let reminder = note.reminder {
+            notificationManager.scheduleNotification(for: note, at: reminder)
         }
     }
     
-    func updateNoteNote(_ noteNote: NoteNote) {
-        if let index = noteNotes.firstIndex(where: { $0.id == noteNote.id }) {
-            noteNotes[index] = noteNote
+    func updateNoteNote(_ note: NoteNote) {
+        if let index = noteNotes.firstIndex(where: { $0.id == note.id }) {
+            noteNotes[index] = note
             filteredNoteNotes = noteNotes
             saveNoteNotes()
             
-            notificationManager.removeNotification(for: noteNote)
-            if let reminder = noteNote.reminder {
-                notificationManager.scheduleNotification(for: noteNote, at: reminder)
+            notificationManager.removeNotification(for: note)
+            if let reminder = note.reminder {
+                notificationManager.scheduleNotification(for: note, at: reminder)
             }
         }
     }
     
-    func deleteNoteNote(_ noteNote: NoteNote) {
-        noteNotes.removeAll { $0.id == noteNote.id }
+    func deleteNoteNote(_ note: NoteNote) {
+        noteNotes.removeAll { $0.id == note.id }
         filteredNoteNotes = noteNotes
         saveNoteNotes()
-        notificationManager.removeNotification(for: noteNote)
+        notificationManager.removeNotification(for: note)
     }
     
     func filterNoteNotes(_ searchText: String) {
         if searchText.isEmpty {
             filteredNoteNotes = noteNotes
         } else {
-            filteredNoteNotes = noteNotes.filter { noteNote in
-                noteNote.title.localizedCaseInsensitiveContains(searchText) ||
-                noteNote.content.localizedCaseInsensitiveContains(searchText) ||
-                noteNote.tags.contains { $0.localizedCaseInsensitiveContains(searchText) }
+            filteredNoteNotes = noteNotes.filter { note in
+                note.title.localizedCaseInsensitiveContains(searchText) ||
+                note.content.localizedCaseInsensitiveContains(searchText) ||
+                note.tags.contains { $0.localizedCaseInsensitiveContains(searchText) }
             }
         }
     }
