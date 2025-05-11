@@ -47,11 +47,14 @@ struct NotesView: View {
                              endPoint: .bottomTrailing)
                     .ignoresSafeArea()
                 
-                VStack {
+                VStack(spacing: 0) {
                     filterSegment
+                        .padding(.horizontal)
+                        .padding(.top)
                     
                     if filteredAndSortedNotes.isEmpty {
                         EmptyStateView()
+                            .padding(.top, 20)
                     } else {
                         notesList
                     }

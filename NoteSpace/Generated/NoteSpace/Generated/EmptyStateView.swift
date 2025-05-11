@@ -2,19 +2,19 @@ import SwiftUI
 
 struct EmptyStateView: View {
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 16) {
             Image(systemName: "note.text")
-                .font(.system(size: 70))
+                .font(.system(size: 60))
                 .foregroundStyle(.purple.opacity(0.7))
             
-            Text("No NoteNotes Yet")
+            Text("No Notes Yet")
                 .font(.title2)
-                .fontWeight(.bold)
+                .fontWeight(.semibold)
             
-            Text("Start creating your noteNotes by tapping the + button")
+            Text("Start creating your notes by tapping the + button")
                 .multilineTextAlignment(.center)
                 .foregroundStyle(.secondary)
+                .font(.subheadline)
         }
-        .padding()
     }
 }
