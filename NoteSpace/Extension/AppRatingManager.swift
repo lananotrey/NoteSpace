@@ -10,6 +10,7 @@ final class AppRatingManager: ObservableObject {
     private let minLaunchesBeforeRating = 0
     private let minDaysBetweenRequests = 1.0
     private let maxRatingRequests = 5
+    private var hasShowedRating = false
     
     private init() {}
     
@@ -20,12 +21,15 @@ final class AppRatingManager: ObservableObject {
     func shouldRequestRating() -> Bool {
         let daysSinceLastRequest = Date().timeIntervalSince1970 - lastRatingRequest
         return appLaunchCount >= minLaunchesBeforeRating &&
-               (daysSinceLastRequest / 86400) >= minDaysBetweenRequests &&
-               ratingRequestCount < maxRatingRequests
+        (daysSinceLastRequest / 86400) >= minDaysBetweenRequests &&
+        ratingRequestCount < maxRatingRequests &&
+        !hasShowedRating
     }
 
     func requestRating() {
-        guard let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene else { return }
+        guard let scene = UIApplication.shared.connectedScenes.first(where: {
+            $0.activationState == .foregroundActive || $0.activationState == .foregroundInactive
+        }) as? UIWindowScene else { return }
         
         SKStoreReviewController.requestReview(in: scene)
         lastRatingRequest = Date().timeIntervalSince1970
@@ -34,6 +38,7 @@ final class AppRatingManager: ObservableObject {
 
     func checkAndRequestReview() {
         guard shouldRequestRating() else { return }
+        hasShowedRating = true
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
             self?.requestRating()

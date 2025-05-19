@@ -1,6 +1,4 @@
 import SwiftUI
-import FirebaseCore
-import FirebaseRemoteConfig
 
 @main
 struct NoteSpaceApp: App {

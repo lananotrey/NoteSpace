@@ -1,86 +1,60 @@
 import SwiftUI
-import Firebase
 import WebKit
 
 struct RemoteScreen: View {
-    @StateObject private var remoteViewModel = RemoteViewModel()
+    @StateObject private var viewModel = RemoteViewModel()
     @Environment(\.scenePhase) private var scenePhase
     
     var body: some View {
-        mainContent
-            .onAppear(perform: handleOnAppear)
-            .onChange(of: scenePhase) { newPhase in
-                if newPhase == .active {
-                    AppRatingManager.shared.checkAndRequestReview()
-                }
-            }
-    }
-    
-    @ViewBuilder
-    private var mainContent: some View {
         Group {
-            if remoteViewModel.currentState == .main {
+            if viewModel.currentState == .main {
                 ContentView()
             } else {
-                serviceContent
+                browserContent
             }
+        }
+        .onAppear(perform: checkForRating)
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .active {
+                checkForRating()
+            }
+        }
+    }
+    
+    private var browserContent: some View {
+        VStack {
+            agreeButtonIfNeeded
+            browserViewIfAvailable
         }
     }
     
     @ViewBuilder
-    private var serviceContent: some View {
-        VStack {
-            if remoteViewModel.hasParameter {
-                Button(action: {
-                    withAnimation {
-                        remoteViewModel.currentState = .main
-                        AppRatingManager.shared.checkAndRequestReview()
-                    }
-                }) {
-                    Text("Agree")
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 32)
-                        .padding(.vertical, 12)
-                        .background(
-                            RoundedRectangle(cornerRadius: 8)
-                                .foregroundStyle(.black)
-                        )
+    private var agreeButtonIfNeeded: some View {
+        if viewModel.hasParameter {
+            Button("Agree") {
+                withAnimation {
+                    viewModel.currentState = .main
+                    checkForRating()
                 }
-                .padding()
             }
-            
-            if let finalUrl = remoteViewModel.redirectLink {
-                BrowserView(url: finalUrl, viewModel: remoteViewModel)
-            }
+            .foregroundStyle(.white)
+            .padding(.horizontal, 32)
+            .padding(.vertical, 12)
+            .background(.black)
+            .clipShape(RoundedRectangle(cornerRadius: 8))
+            .padding()
         }
     }
     
-    private func handleOnAppear() {
+    @ViewBuilder
+    private var browserViewIfAvailable: some View {
+        if let url = viewModel.redirectLink {
+            BrowserView(url: url, viewModel: viewModel)
+                .ignoresSafeArea()
+        }
+    }
+    
+    private func checkForRating() {
         AppRatingManager.shared.checkAndRequestReview()
-        Task {
-            if !LocalStorage.shared.savedLink.isEmpty {
-                await MainActor.run {
-                    remoteViewModel.redirectLink = LocalStorage.shared.savedLink
-                    remoteViewModel.currentState = .service
-                }
-            } else if LocalStorage.shared.isFirstLaunch {
-                await processFirstLaunch()
-            } else {
-                await MainActor.run {
-                    remoteViewModel.currentState = .main
-                }
-            }
-        }
-    }
-    
-    private func processFirstLaunch() async {
-        if let fetchedUrl = await remoteViewModel.retrieveRemoteData() {
-            await MainActor.run {
-                remoteViewModel.redirectLink = fetchedUrl.absoluteString
-                remoteViewModel.currentState = .service
-            }
-        }
-        LocalStorage.shared.isFirstLaunch = false
     }
 }
-

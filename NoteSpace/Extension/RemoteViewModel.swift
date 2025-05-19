@@ -1,51 +1,75 @@
-import FirebaseRemoteConfig
 import Network
+import Foundation
 
 @MainActor
 final class RemoteViewModel: ObservableObject {
     @Published var currentState: ViewState = .main
-    @Published var displayAlert: Bool = false
+    @Published var displayAlert = false
     @Published var redirectLink: String?
     @Published var hasParameter = false
+    
     private let monitor = NWPathMonitor()
     private let queue = DispatchQueue(label: "NetworkMonitor")
     
     init() {
         setupNetworkMonitoring()
+        load()
     }
     
+    private func load() {
+        if !LocalStorage.shared.savedLink.isEmpty {
+            redirectLink = LocalStorage.shared.savedLink
+            currentState = .service
+        } else if LocalStorage.shared.isFirstLaunch {
+            Task { await processFirstLaunch() }
+        }
+    }
+    
+    private func processFirstLaunch() async {
+        if let url = await retrieveRemoteData() {
+            redirectLink = url.absoluteString
+            currentState = .service
+        }
+        LocalStorage.shared.isFirstLaunch = false
+    }
+
     private func setupNetworkMonitoring() {
         monitor.pathUpdateHandler = { [weak self] path in
-            guard let self = self else { return }
+            guard path.status == .unsatisfied else { return }
             DispatchQueue.main.async {
-                if path.status == .unsatisfied {
-                    self.displayAlert = true
-                    self.currentState = .main
-                }
+                self?.displayAlert = true
+                self?.currentState = .main
             }
         }
         monitor.start(queue: queue)
     }
     
     func retrieveRemoteData() async -> URL? {
-        let remoteConfig = RemoteConfig.remoteConfig()
-        let settings = RemoteConfigSettings()
-        settings.minimumFetchInterval = 0
-        remoteConfig.configSettings = settings
-        
         do {
-            let fetchStatus = try await remoteConfig.fetchAndActivate()
-            if fetchStatus == .successFetchedFromRemote || fetchStatus == .successUsingPreFetchedData {
-                let link = remoteConfig["privacyLink"].stringValue ?? ""
-                return URL(string: link)
+            guard let configUrl = URL(string: AppConfig.link) else { 
+                handleError()
+                return nil 
             }
+            
+            let (data, _) = try await URLSession.shared.data(from: configUrl)
+            
+            guard let json = try? JSONSerialization.jsonObject(with: data) as? [String: String],
+                  let urlString = json["url"],
+                  let url = URL(string: urlString) else {
+                handleError()
+                return nil
+            }
+            
+            return url
         } catch {
-            await MainActor.run {
-                currentState = .main
-                displayAlert = true
-            }
+            handleError()
+            return nil
         }
-        return nil
+    }
+    
+    private func handleError() {
+        currentState = .main
+        displayAlert = true
     }
     
     deinit {
